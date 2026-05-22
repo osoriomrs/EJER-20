@@ -1,0 +1,164 @@
+{
+  "info": {
+    "name": "Biblioteca API",
+    "description": "Coleccion para probar la API REST de biblioteca.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "autor_id",
+      "value": "AUT001"
+    },
+    {
+      "key": "libro_id",
+      "value": "LIB001"
+    }
+  ],
+  "item": [
+    {
+      "name": "Autores",
+      "item": [
+        {
+          "name": "Obtener autores",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/autores"
+          }
+        },
+        {
+          "name": "Filtrar autores por nacionalidad",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/autores?nacionalidad=Española"
+          }
+        },
+        {
+          "name": "Obtener autor por referencia",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/autores/{{autor_id}}"
+          }
+        },
+        {
+          "name": "Obtener libros de un autor",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/autores/{{autor_id}}/libros"
+          }
+        },
+        {
+          "name": "Crear autor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"referencia\": \"AUT999\",\n  \"nombre\": \"Autora de prueba\",\n  \"nacionalidad\": \"Española\",\n  \"fechaNacimiento\": \"1980-01-01\",\n  \"imagenUrl\": \"https://example.com/autora.jpg\"\n}"
+            },
+            "url": "{{base_url}}/api/autores"
+          }
+        },
+        {
+          "name": "Actualizar autor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nacionalidad\": \"Francesa\"\n}"
+            },
+            "url": "{{base_url}}/api/autores/{{autor_id}}"
+          }
+        },
+        {
+          "name": "Eliminar autor",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/autores/AUT999"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Libros",
+      "item": [
+        {
+          "name": "Obtener libros",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/libros"
+          }
+        },
+        {
+          "name": "Ordenar libros por titulo",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/libros?sort=titulo"
+          }
+        },
+        {
+          "name": "Obtener libro por referencia",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/libros/{{libro_id}}"
+          }
+        },
+        {
+          "name": "Crear libro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"referencia\": \"LIB999\",\n  \"titulo\": \"Libro de prueba\",\n  \"genero\": \"Ficcion\",\n  \"anyoPublicacion\": 2026,\n  \"autor\": \"AUT001\",\n  \"imagenUrl\": \"https://example.com/libro.jpg\"\n}"
+            },
+            "url": "{{base_url}}/api/libros"
+          }
+        },
+        {
+          "name": "Actualizar libro",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"genero\": \"Ciencia Ficcion\"\n}"
+            },
+            "url": "{{base_url}}/api/libros/{{libro_id}}"
+          }
+        },
+        {
+          "name": "Eliminar libro",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/api/libros/LIB999"
+          }
+        }
+      ]
+    }
+  ]
+}
